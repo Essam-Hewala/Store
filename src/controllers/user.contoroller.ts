@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Usermodel from "../models/user.model";
+import config from "../config";
+import jsonwebtoken from 'jsonwebtoken';
 const usermodel = new Usermodel();
 export const create = async (
   req: Request,
@@ -76,5 +78,30 @@ export const deletes = async (
     next(Error);
   }
 };
+export const authenticate = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const {username ,password} = req.body;
+    const user = await usermodel.authenticate(username,password);
+    const token = jsonwebtoken.sign({user},config.token as unknown as string);
+    if(!user)
+    {
+      return res.status(401).json({
+        status : 'error',
+        message : 'The Username And Password Not Match'
+      });
+    }else{
+    res.json({
+      message: "Checked User And Password",
+      data: { ...user,token },
+    });} 
+  } catch {
+    next(Error);
+  }
+};
+
 
 
