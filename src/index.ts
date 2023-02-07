@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import errormidlleware from "./middleware/error.middleware";
+import routes from "./routes";
 import config from "./config";
 // import db from './database/index' connect to db
 // console.log(config);
@@ -20,19 +21,10 @@ app.get("/", (req: Request, res: Response) => {
     throw new Error("Error Check Again");
   }
 });
+app.use("/operations", routes);
 app.use((_req: Request, res: Response) => {
-  res.status(404).send("Error in Routing ");
+  res.status(404).send("Error in Routing Check Again");
 });
-// test Connection to DB
-// db.connect().then((Client)=>{
-// return Client.query('select now()').then((res)=>{
-//     Client.release();
-//     console.log(res.rows);
-// }).catch((err)=>{
-// Client.release();
-// console.log(err.stack);
-// });
-// });
 // for errors
 app.use(errormidlleware);
 // Listen To Port 3150
