@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import Usermodel from "../models/user.model";
 import config from "../config";
-import jsonwebtoken from 'jsonwebtoken';
+import jsonwebtoken from "jsonwebtoken";
 const usermodel = new Usermodel();
 export const create = async (
   req: Request,
@@ -13,7 +13,7 @@ export const create = async (
     res.json({
       message: "Creating User Using API Request",
       data: { ...user },
-    }); 
+    });
   } catch {
     next(Error);
   }
@@ -28,7 +28,7 @@ export const getall = async (
     res.json({
       message: "Get * From Users",
       data: { ...user },
-    }); 
+    });
   } catch {
     next(Error);
   }
@@ -43,7 +43,7 @@ export const getone = async (
     res.json({
       message: "Get Specific From Users",
       data: { ...user },
-    }); 
+    });
   } catch {
     next(Error);
   }
@@ -58,7 +58,7 @@ export const update = async (
     res.json({
       message: "Update Specific From Users",
       data: { ...user },
-    }); 
+    });
   } catch {
     next(Error);
   }
@@ -73,7 +73,7 @@ export const deletes = async (
     res.json({
       message: "Delete  From Users",
       data: { ...user },
-    }); 
+    });
   } catch {
     next(Error);
   }
@@ -84,24 +84,24 @@ export const authenticate = async (
   next: NextFunction
 ) => {
   try {
-    const {username ,password} = req.body;
-    const user = await usermodel.authenticate(username,password);
-    const token = jsonwebtoken.sign({user},config.token as unknown as string);
-    if(!user)
-    {
+    const { username, password } = req.body;
+    const user = await usermodel.authenticate(username, password);
+    const token = jsonwebtoken.sign(
+      { user },
+      config.token as unknown as string
+    );
+    if (!user) {
       return res.status(401).json({
-        status : 'error',
-        message : 'The Username And Password Not Match'
+        status: "error",
+        message: "The Username And Password Not Match",
       });
-    }else{
-    res.json({
-      message: "Checked User And Password",
-      data: { ...user,token },
-    });} 
+    } else {
+      res.json({
+        message: "Checked User And Password",
+        data: { ...user, token },
+      });
+    }
   } catch {
     next(Error);
   }
 };
-
-
-

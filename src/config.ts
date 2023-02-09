@@ -12,7 +12,7 @@ const {
   POSTGRES_DB_TEST,
   BCRTPT_PASSWORD,
   SLART_ROUNDS,
-  TOKEN_SECRET
+  TOKEN_SECRET,
 } = process.env;
 export default {
   port: Port,
@@ -21,7 +21,7 @@ export default {
   dbport: POSTGRES_PORT,
   user: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
-  pepper : BCRTPT_PASSWORD,
-  salt : SLART_ROUNDS,
-  token : TOKEN_SECRET
+  pepper: BCRTPT_PASSWORD,
+  salt: SLART_ROUNDS,
+  token: TOKEN_SECRET,
 };
