@@ -2,10 +2,7 @@ import { Router } from "express";
 import * as controllers from "../../controllers/user.contoroller";
 import authtoken from "../../middleware/auth.middleware";
 const routes = Router();
-routes
-  .route("/")
-  .post(controllers.create)
-  .get(authtoken, controllers.getall);
+routes.route("/").post(controllers.create).get(authtoken, controllers.getall);
 routes
   .route("/:id")
   .get(authtoken, controllers.getone)
