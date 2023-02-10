@@ -11,10 +11,11 @@ class Usermodel {
   async create(u: user): Promise<user> {
     try {
       const Connection = await db.connect();
-      const sql = `insert into users(username,fname,password)values($1,$2,$3) returning *`;
+      const sql = `insert into users(username,first_name,last_name,password)values($1,$2,$3,$4) returning *`;
       const result = await Connection.query(sql, [
         u.username,
-        u.fname,
+        u.first_name,
+        u.last_name,
         hashpass(u.password as unknown as string),
       ]);
       Connection.release();
@@ -48,10 +49,11 @@ class Usermodel {
   async update(u: user): Promise<user> {
     try {
       const Connection = await db.connect();
-      const sql = `update users set username = $1,fname=$2,password=$3 returning *`;
+      const sql = `update users set username = $1,first_name=$2,last_name=$3,password=$4 returning *`;
       const result = await Connection.query(sql, [
         u.username,
-        u.fname,
+        u.first_name,
+        u.last_name,
         hashpass(u.password as unknown as string),
       ]);
       Connection.release();

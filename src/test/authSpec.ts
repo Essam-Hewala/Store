@@ -12,7 +12,8 @@ describe("Authnticate Users Module", () => {
 describe("Test Auth User", () => {
   const user = {
     username: "Essam_Hewala",
-    fname: "Essam Sayed Mohamed Hewala",
+    first_name: "Essam",
+    last_name: "Sayed",
     password: "A_123456",
   } as user;
   beforeAll(async () => {
@@ -31,7 +32,8 @@ describe("Test Auth User", () => {
       user.password as string
     );
     expect(authuser?.username).toBe(user.username);
-    expect(authuser?.fname).toBe(user.fname);
+    expect(authuser?.first_name).toBe(user.first_name);
+    expect(authuser?.last_name).toBe(user.last_name);
   });
   it("Should Return Wrong Data", async () => {
     const authuser = await usermodel.authenticate(

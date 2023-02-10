@@ -1,7 +1,8 @@
 type user = {
   id?: string;
   username?: string;
-  fname?: string;
+  first_name?: string;
+  last_name?: string;
   password?: string;
 };
 export default user;
