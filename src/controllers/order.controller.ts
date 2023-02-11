@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Ordermodel from "../models/order.model";
-const ordermodel = new Ordermodel();
+const ordermodel = new Ordermodel(); 
 export const create = async (
   req: Request,
   res: Response,
