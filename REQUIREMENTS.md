@@ -206,8 +206,7 @@ Successful Response:
 ```bash
 {
     "user_id": <username id>,
-    "product_id": <product id>,
-    "quantity": <quantity for this product>
+    "status": <product id>    
 }
 ```
 
@@ -216,9 +215,8 @@ Successful Response:
 ```bash
 {
     "id": <item id>,
-    "product_id": <product id>,
-    "order_id": <order id>,
-    "quantity": <quantity>
+    "user_id": <User id>,
+    "status": <status>
 }
 ```
 
@@ -267,8 +265,95 @@ Successful Response
 ```bash
 {
     "user_id":<user id>,
+    "status": <status>
+}
+```
+
+Successful Response
+
+```bash
+{
+    "id": <item id>,
+    "user_id": <user id>,
+    "status": <status>
+}
+```
+
+6. Delete an order
+   [DELETE] `/operations/order/id` [token required]
+
+
+## Orders Product
+
+1. Create a new order
+   [POST] `/operations/op/` [token required]
+
+```bash
+{
+    "order_id": <Order id>,
     "product_id": <product id>,
-    "quantity": <item new quantity>
+    "quantity": <quantity for this product>
+}
+```
+
+Successful Response:
+
+```bash
+{
+    "id": <item id>,
+    "product_id": <product id>,
+    "order_id": <order id>,
+    "quantity": <quantity>
+}
+```
+
+2. List all orders
+   [GET] `/operations/op/` [token required]
+
+Successful Response
+
+```bash
+[
+    {
+        "id": <item id>,
+        "order_id": <order id>,
+        "user_id": <user id>,
+        "username": <username>,
+        "product_id": <product id>,
+        "product_name": <product name>,
+        "quantity": <item quantity>
+    },
+]
+```
+
+3. List an order by its id
+   [GET] `/operations/op/id` [token required]
+
+Successful Response
+
+```bash
+[
+    {
+        "id": <item id>,
+        "order_id": <order id>,
+        "user_id": <user id>,
+        "username": <username>,
+        "product_id": <product id>,
+        "product_name": <product name>,
+        "quantity": <item quantity>
+    }
+]
+```
+
+
+5. Edit item inside an order
+   [PATCH] `/operations/op/id` [token required]
+
+```bash
+{
+    "order_id": <Order id>,
+    "product_id": <product id>,
+    "quantity": <quantity for this product>
 }
 ```
 
@@ -285,15 +370,4 @@ Successful Response
 ```
 
 6. Delete an order
-   [DELETE] `/operations/order/id` [token required]
-
-Successful Response
-
-```bash
-{
-    "id": <deleted item id>,
-    "product_id": <product id>,
-    "order_id": <order id>,
-    "quantity": <quantity>
-}
-```
+   [DELETE] `/operations/op/id` [token required]
