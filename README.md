@@ -11,8 +11,16 @@ I provided .env.example file within this repo, please rename it to be .env and f
 
 By default, this application runs on port 3150, but It can be changed through .env file
 
-## package installation instructions
+## Create DB 
+CREATE DATABASE store;
+CREATE DATABASE store_test;
 
+## Create User
+create user store_user with password 'A_123456';
+
+## Grant Access To DB 
+GRANT ALL PRIVILEGES ON DATABASE store to store_user;  
+GRANT ALL PRIVILEGES ON DATABASE store_test to store_user;
 ### 1. rename .env file
 
 There is a file called .env.example file, you have to rename It to be .env and then fill it all required data as following:
@@ -51,3 +59,35 @@ You Have To Insert Data In
 User Module First , 
 Then In Product Module Then 
 Final In Orders Module To Make Every Thing Work Correctely  
+
+
+## Database Schema 
+ TABLE users(
+    id serial primary key,
+    username varchar(100) not null,
+    first_name VARCHAR(100)not null,
+    last_name VARCHAR(100)not null,
+    password varchar(100) not null 
+)
+TABLE product(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    price INT
+)
+TABLE order_status (
+    id SERIAL PRIMARY KEY,
+    status_name VARCHAR(50)
+)
+
+TABLE orders(
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id),
+    status INT REFERENCES order_status(id)
+)
+
+
+TABLE order_products(
+    id SERIAL PRIMARY KEY,
+    product_id INT REFERENCES product(id),
+    order_id INT REFERENCES orders(id),
+    quantity INT)
