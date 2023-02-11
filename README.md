@@ -24,11 +24,11 @@ NODE_ENV=dev ---> 'Used to determine If working on dev or test database, You can
 POSTGRES_HOST= ---> 'Postgres SQL Hostname'
 POSTGRES_PORT=5433 --- 'Postgres SQL Port, You can leave It to default.'
 POSTGRES_USER= ---> 'Database Username'
-POSTGRES_PASS= ---> 'Database password'
+POSTGRES_PASSWORD= ---> 'Database password'
 POSTGRES_DB= ---> 'Database Name (For development) -> Store'
 POSTGRES_DB_TEST= ---> 'Database Name (For unit testing) -> Store_test'
-BCRYPT_PASS= ---> 'bcrypt password'
-SALT_ROUNDS=10 ---> 'Salt Rounds, You can leave It to default.'
+BCRYPT_PASSWORD= ---> 'bcrypt password'
+SLART_ROUNDS=10 ---> 'Salt Rounds, You can leave It to default.'
 TOKEN_SECRET=! ---> 'JWT Token secret'
 please install all dependencies using `yarn`
 

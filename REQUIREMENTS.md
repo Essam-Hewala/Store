@@ -200,6 +200,12 @@ Successful Response:
 
 ## Orders
 
+
+Order status are already defined as following:
+<1> Active
+<2> Completed
+
+
 1. Create a new order
    [POST] `/operations/order/` [token required]
 
