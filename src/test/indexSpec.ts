@@ -106,4 +106,11 @@ describe("Testing Orders endpoints", () => {
     expect(res.status).toBe(200);
   });
 });
+afterAll(async () => {
+  const conn = await db.connect();
+  const sql =
+    "DELETE FROM users;\nALTER SEQUENCE users_id_seq RESTART WITH 1";
+  await conn.query(sql);
+  conn.release();
+});
 });

@@ -2,6 +2,7 @@ import Orderproduct from "../models/order-prodcu.model";
 import UserModel from "../models/user.model";
 import Productmodel from "../models/product.model";
 import Ordermodel from "../models/order.model";
+import db from '../database/index';
 const order = new Orderproduct();
 const userModel = new UserModel();
 const prod = new Productmodel();
@@ -53,5 +54,16 @@ describe("Order Model", () => {
       expect(orders.length).toBe(1);
     });
   });
-
+  afterAll(async () => {
+    const connection = await db.connect();
+    const sql1 ="DELETE FROM users;\nALTER SEQUENCE users_id_seq RESTART WITH 1";
+    const sql2="DELETE FROM orders;\nALTER SEQUENCE orders_id_seq RESTART WITH 1";
+    const sql3="DELETE FROM product;\nALTER SEQUENCE product_id_seq RESTART WITH 1";
+    const sql4="DELETE FROM order_products;\nALTER SEQUENCE order_products_id_seq RESTART WITH 1";
+    await connection.query(sql4);
+    await connection.query(sql3);
+    await connection.query(sql2);
+    await connection.query(sql1);
+    connection.release();
+  });
 });

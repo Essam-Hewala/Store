@@ -40,4 +40,10 @@ describe("Products Model", () => {
       expect(Prod.length).toBe(1);
     });
   });
+  afterAll(async () => {
+    const connection = await db.connect();
+    const sql3="DELETE FROM product;\nALTER SEQUENCE product_id_seq RESTART WITH 1";
+    await connection.query(sql3);
+    connection.release();
+  });
 });
